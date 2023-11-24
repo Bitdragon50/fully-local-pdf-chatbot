@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fully-local-pdf-chatbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fully-local-pdf-chatbot
+  template:
+    metadata:
+      labels:
+        app: fully-local-pdf-chatbot
+    spec:
+      containers:
+      - name: fully-local-pdf-chatbot
+        image: alanhale/fully-local-pdf-chatbot
+        ports:
+        - containerPort: 3000

@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      containers:
+      - name: ollama
+        image: ollama/ollama
+        env:
+        - name: OLLAMA_ORIGINS
+          value: "https://webml-demo.vercel.app"
+        - name: OLLAMA_HOST
+          value: "0.0.0.0:11434"
+        ports:
+        - containerPort: 11434
+        command: ["/bin/sh"]
+        args: ["-c", "ollama serve && sleep 10 && ollama pull mistral"]

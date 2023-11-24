@@ -26,7 +26,7 @@ const embeddings = new HuggingFaceTransformersEmbeddings({
 const voyClient = new VoyClient();
 const vectorstore = new VoyVectorStore(voyClient, embeddings);
 const ollama = new ChatOllama({
-  baseUrl: "http://localhost:11435",
+  baseUrl: "http://localhost:11434",
   temperature: 0.3,
   model: "mistral",
 });

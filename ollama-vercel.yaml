@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+  labels:
+    app: web-app
+    component: ollama-frontend
+spec:
+  containers:
+    - name: ollama-server
+      image: ollama/ollama
+      env:
+        - name: OLLAMA_ORIGINS
+          value: "http://localhost:3000" #"https://webml-demo.vercel.app"
+        - name: OLLAMA_HOST
+          value: "127.0.0.1:11434"
+      ports:
+        - containerPort: 11434
+
+    - name: fully-local-pdf-chatbot
+      image: alanhale/fully-local-pdf-chatbot
+      ports:
+        - containerPort: 3000
